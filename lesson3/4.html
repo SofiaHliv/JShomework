@@ -44,7 +44,17 @@
     },
   ];
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+   const photos = products.filter(function (photos) {
+     return "photos" in photos && photos.photos.length !== 0;
+   });
+   console.log(photos);
+
+  products.sort(function (price1, price2) {
+    return price1.price - price2.price;
+  });
+  console.log(products);
+
+
 </script>
 </body>
 </html>
