@@ -50,7 +50,70 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  function PostES5(name, text) {
+    this.name = name;
+    this.text = text;
+    this.date = new Date();
+  }
+  PostES5.prototype.edit = function (text) {
+    this.text = text;
+    this.date = new Date();
+  };
+
+  function AttachedPostES5(name, text) {
+    PostES5.call(this, name, text)
+    this.highlighted = false;
+  }
+  AttachedPostES5.prototype = Object.create(PostES5.prototype);
+  AttachedPostES5.prototype.constructor = AttachedPostES5;
+  AttachedPostES5.prototype.makeTextHighlighted = function() {
+    this.highlighted = true;
+    this.date = new Date();
+  };
+
+  const person1 = new PostES5('Roman', '123');
+  console.log(person1);
+  person1.edit('456');
+  console.log(person1);
+
+  const AttachedPost1 = new AttachedPostES5('Denis', 'Hello');
+  console.log(AttachedPost1);
+  AttachedPost1.makeTextHighlighted();
+  AttachedPost1.edit('Goodbay');
+  console.log(AttachedPost1);
+
+
+  class PostES6 {
+    constructor(name, text) {
+      this.name = name;
+      this.text = text;
+      this.date = new Date();
+    }
+    edit(text){
+      this.text = text;
+      this.date = new Date();
+    }
+  }
+  class AttachedPostES6 extends PostES6 {
+    constructor(name, text) {
+      super (name, text);
+      this.highlighted = false;
+    }
+    makeTextHighlighted() {
+      this.highlighted = true;
+      this.date = new Date();
+    }
+  }
+  const person2 = new PostES6('Roman', '123');
+  console.log(person2);
+  person2.edit('456');
+  console.log(person2);
+
+  const AttachedPost2 = new AttachedPostES6('Denis', 'Hello');
+  console.log(AttachedPost2);
+  AttachedPost2.makeTextHighlighted();
+  AttachedPost2.edit('Goodbay');
+  console.log(AttachedPost2);
 </script>
 </body>
 </html>
