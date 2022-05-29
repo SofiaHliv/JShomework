@@ -14,13 +14,13 @@
 
 <p class="super_element">Привет</p>
 
-<img src="https://placeimg.com/50/50/animals" alt="">
-<img src="https://placeimg.com/50/50/arch" alt="">
-<img src="https://placeimg.com/50/50/nature" alt="">
-<img src="https://placeimg.com/50/50/people" alt="">
-<img src="https://placeimg.com/50/50/tech" alt="">
-<img src="https://placeimg.com/50/50/tech/grayscale" alt="">
-<img src="https://placeimg.com/50/50/tech/sepia" alt="">
+<img src="http://s1.iconbird.com/ico/1112/rio/w256h2561352643116Jewelicon.png" alt="">
+<img src="http://s1.iconbird.com/ico/1112/rio/w256h2561352643116Blue2icon.png" alt="">
+<img src="http://s1.iconbird.com/ico/1112/rio/w256h2561352643116Blueyoungicon.png" alt="">
+<img src="http://s1.iconbird.com/ico/1112/rio/w256h2561352643116Blueicon.png" alt="">
+<img src="http://s1.iconbird.com/ico/1112/rio/w256h2561352643116Nigelicon.png" alt="">
+<img src="http://s1.iconbird.com/ico/1112/rio/w256h2561352643116Nigel2icon.png" alt="">
+<img src="http://s1.iconbird.com/ico/1112/rio/w256h2561352643116Blue3icon.png" alt="">
 
 <br>
 
@@ -56,13 +56,17 @@
   1. Необходимо вывести сообщение в консоль "все теги прогрузились", когда все
   теги будут созданы браузером.
   */
-
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("все теги прогрузились");
+  });
 
   /*
   2. Необходимо вывести сообщение в консоль "страница загрузилась", когда все
   ресурсы страницы будут загружены.
   */
-
+   window.addEventListener("load", () => {
+    console.log("страница загрузилась");
+  });
 
   /*
   3. При клике на какой-либо тег на странице в консоль должно выводиться
@@ -73,13 +77,20 @@
   которому был совершен клик.
   Необходимо использовать делегирование.
   */
-
+  document.querySelector('body').addEventListener('click', event => {
+    const tagName = event.target.tagName.toLowerCase();
+    if (event.target.classList.contains('super_element')) {
+      console.log(`Класс "super_element" присутствует в элементе "${tagName}"`);
+    }
+    console.log(`Класс "super_element" отсутствует в элементе "${tagName}"`);
+  });
 
   /*
   4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение:
   "Вы навели на textarea."
    */
-
+  const textarea = document.querySelector('textarea');
+  textarea.addEventListener('mouseover', () => console.log('Вы навели на textarea.'));
 
   /*
   5. Необходимо повесить событие клика на тег ul. В обработчике события в
@@ -88,18 +99,26 @@
   Если клик был не по кнопке, то ничего выводить не нужно.
   Необходимо использовать делегирование.
    */
+  document.querySelector('ul').addEventListener('click', event => {
+    if (event.target.tagName !== 'BUTTON') {
+      return;
+    }
 
+    console.log(event.target.textContent);
+  });
 
   /*
   6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только
   потом выводится текст из 3 задания, если мы кликаем по кнопкам в ul?
   Ответ необходимо написать здесь же, под этим комментарием, своими словами.
   */
-
+  // В третьем задании более глобальный элемент. А работа кода начинается с ближайшего элемента.
 
   /*
   7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
    */
+  const btnEl = document.querySelectorAll('li:nth-child(2n)');
+  btnEl.forEach(El => El.style.backgroundColor = "#5DADE2");
 
 </script>
 </body>
